@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/31712b049a.js" crossorigin="anonymous"></script>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <main id="main-container">
+        <!-- <aside class="sidebar pt-10 pb-10">
+            <div class="sidebar-header pb-10">
+                <button class="btn-gray rounded-sm px-6">Search for places</button>
+                <button class="btn-gray rounded-full w-10 h-10"><i class="fa fa-globe" aria-hidden="true"></i></button>
+            </div>
+            <div class="actual-weather relative">
+                <div class="clouds-bg">
+                    <img class="opacity-10" src="images/Cloud-background.png" alt="">
+                </div>
+                <img src="images/LightCloud.png" alt="Light cloud actual weather">
+            </div>
+            <div class="text-center">
+                <span class="thermometer text-9xl pb-16">15<span class="tmp-format text-5xl">ºC</span></span>
+            </div>
+            <div class="text-center pt-16 pb-16">
+                <span class="weather text-3xl font-bold ">Cloudy</span>
+            </div>
+            <div class="text-center pt-5 pb-5">
+                <span class="day-time pt-10">Today · Fri, 5 Jun</span>
+            </div>
+            <div class="text-center">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span class="location px-2">Benidorm</span>
+            </div>
+        </aside> -->
+        <aside class="sidebar">
+            <button class="close-btn text-xl">
+                <span class="fa fa-times" aria-hidden="true"></span>
+            </button>
+            <div class="search-box relative">
+                <div>
+                    <span class="fa fa-search absolute" aria-hidden="true"></span>
+                    <input type="search" class="p-2" placeholder="search location">
+                    <button class="p-2">Search</button>
+                </div>
+            </div>
+            
+        </aside>
+        <div class="main-content">
+            <div class="temperature-format pt-10 pb-10 realtive">
+                <button class="btn-temperature font-bold">ºC</button>
+                <button class="btn-temperature font-bold">ºF</button>
+            </div>
+            <section id="weekly-forecast">
+                <h2 class="font-bold text-xl">Weekly Weather Forecast</h2>
+                <div class="container-weekly-card">
+                    <article class="weekly-card">
+                        <h3 class="break-words">Tomorrow</h3>
+                        <img src="images/Clear.png" alt="Clear">
+                        <footer>
+                            <span class="max-temp">16ºC</span>
+                            <span class="min-temp">11ºC</span>
+                        </footer>
+                    </article>
+                    <article class="weekly-card">
+                        <h3>Sun. 7 Jun</h3>
+                        <img src="images/Shower.png" alt="Shower">
+                        <footer>
+                            <span class="max-temp">16ºC</span>
+                            <span class="min-temp">11ºC</span>
+                        </footer>
+                    </article>
+                    <article class="weekly-card">
+                        <h3>Mon. 8 Jun</h3>
+                        <img src="images/Sleet.png" alt="Sleet">
+                        <footer>
+                            <span class="max-temp">16ºC</span>
+                            <span class="min-temp">11ºC</span>
+                        </footer>
+                    </article>
+                    <article class="weekly-card">
+                        <h3>Tue. 9 Jun</h3>
+                        <img src="images/Snow.png" alt="Snow">
+                        <footer>
+                            <span class="max-temp">16ºC</span>
+                            <span class="min-temp">11ºC</span>
+                        </footer>
+                    </article>
+                    <article class="weekly-card">
+                        <h3>Wed. 10 Jun</h3>
+                        <img src="images/Clear.png" alt="Clear">
+                        <footer>
+                            <span class="max-temp">16ºC</span>
+                            <span class="min-temp">11ºC</span>
+                        </footer>
+                    </article>
+                </div>
+            </section>
+            <section id="todays-highlights">
+                <h2 class="font-bold text-xl">Today's Hightlights</h2>
+                <div class="container-todays-card">
+                    <article class="todays-card">
+                        <h3>Wind Status</h3>
+                        <span class="font-bold">7<span>mph</span></span>
+                        <footer class="pt-10"><i class="fas fa-wind"></i> WSW</footer>
+                    </article>
+                    <article class="todays-card">
+                        <h3>Humidity</h3>
+                        <span class="font-bold">84<span>%</span></span>
+                        <footer>
+                            <div class="container-percentage">
+                                <span>0</span>
+                                <span>50</span>
+                                <span>100</span>
+                            </div>
+                            <div class="bar-background">
+                                <div class="bar-progress" style="width: 70%;"></div>
+                            </div>            
+                            <span>%</span>
+                        </footer>
+                    </article>
+                    <article class="todays-card">
+                        <h3>Visibility</h3>
+                        <span class="font-bold">6,4 <span>miles</span></span>
+                    </article>
+                    <article class="todays-card">
+                        <h3>Air Pressure</h3>
+                        <span class="font-bold">998 <span>mb</span></span>
+                    </article>
+                </div>
+                <footer>
+                    created by <span class="underline font-bold">jordigd20</span> - devChallenges.io
+                </footer>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
