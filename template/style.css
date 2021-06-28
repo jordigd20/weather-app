@@ -51,6 +51,13 @@ body {
     color: var(--gray-tipography);
 }
 /*================ SEARCH SIDEBAR ================*/
+.sidebar-search {
+    background-color: var(--light-background); 
+    width: var(--sidebar-width);
+    position: absolute;
+    height: 100%;
+    display: inline-table;
+}
 .close-btn {
     margin-left: 90%;
     padding: 1em 0;
@@ -74,6 +81,24 @@ body {
 .search-box > div > span {
     padding: 0.8em;
 }
+.search-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-result button{
+    width: 80%;
+    padding: .5em;
+    margin-top: 1em;
+}
+.search-result button:hover{
+    border: 1px solid #ccc;
+}
+.search-result button:last-of-type{
+    margin-bottom: 10em;
+}
+
 /*================ MAIN CONTENT ================*/
 .main-content { 
     background-color: var(--dark-background);
@@ -178,7 +203,7 @@ body {
     color: var(--gray-tipography);
     text-align: center;
     padding-bottom: 2em;
-    margin-top: 6.5em;
+    margin-top: 6.95em;
 }
 
 @media all and (max-width:1340px) {
