@@ -1,0 +1,10 @@
+<div class="preloader" [hidden]="notWaiting">
+  <div class="lds-ripple">
+      <div class="lds-pos"></div>
+      <div class="lds-pos"></div>
+  </div>
+</div>
+<div *ngIf="weeklyData.length !== 0">
+  <app-sidebar-search></app-sidebar-search>
+  <app-main-content [weeklyData]="weeklyData"></app-main-content>
+</div>

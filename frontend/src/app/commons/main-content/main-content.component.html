@@ -1,0 +1,55 @@
+<div class="main-content">
+  <div class="temperature-format pt-10 pb-10 realtive">
+      <button class="btn-temperature font-bold">ºC</button>
+      <button class="btn-temperature font-bold">ºF</button>
+  </div>
+  <section id="weekly-forecast">
+      <h2 class="font-bold text-xl">Weekly Weather Forecast</h2>
+      <div class="container-weekly-card">
+          <article class="weekly-card" *ngFor="let day of weeklyData[0]">
+              <h3 class="break-words">{{day.applicable_date | date : 'EEE, MMMM d'}}</h3>
+              <img src="assets/images/{{day.weather_state_name}}.png" alt="Clear">
+              <footer>
+                  <span class="max-temp">{{roundNumber(day.max_temp)}}ºC</span>
+                  <span class="min-temp">{{roundNumber(day.min_temp)}}ºC</span>
+              </footer>
+          </article>
+      </div>
+  </section>
+  <section id="todays-highlights">
+      <h2 class="font-bold text-xl">Today's Hightlights</h2>
+      <div class="container-todays-card">
+          <article class="todays-card">
+              <h3>Wind Status</h3>
+              <span class="font-bold">{{wind_status}}<span>mph</span></span>
+              <footer class="pt-10"><i class="fas fa-wind"></i> WSW</footer>
+          </article>
+          <article class="todays-card">
+              <h3>Humidity</h3>
+              <span class="font-bold">{{humidity}}<span>%</span></span>
+              <footer>
+                  <div class="container-percentage">
+                      <span>0</span>
+                      <span>50</span>
+                      <span>100</span>
+                  </div>
+                  <div class="bar-background">
+                      <div class="bar-progress" style="width: {{humidity}}%;"></div>
+                  </div>
+                  <span>%</span>
+              </footer>
+          </article>
+          <article class="todays-card">
+              <h3>Visibility</h3>
+              <span class="font-bold">{{visibility}} <span>miles</span></span>
+          </article>
+          <article class="todays-card">
+              <h3>Air Pressure</h3>
+              <span class="font-bold">{{air_pressure}} <span>mb</span></span>
+          </article>
+      </div>
+      <footer>
+          created by <span class="underline font-bold">jordigd20</span> - devChallenges.io
+      </footer>
+  </section>
+</div>

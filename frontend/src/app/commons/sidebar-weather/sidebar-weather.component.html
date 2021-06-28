@@ -1,0 +1,25 @@
+<aside class="sidebar pt-10 pb-10">
+  <div class="sidebar-header pb-10">
+      <button class="btn-gray rounded-sm px-6" routerLink="/search">Search for places</button>
+      <button class="btn-gray rounded-full w-10 h-10"><i class="fa fa-globe" aria-hidden="true"></i></button>
+  </div>
+  <div class="actual-weather relative">
+      <div class="clouds-bg">
+          <img class="opacity-10" src="assets/images/Cloud-background.png" alt="">
+      </div>
+      <img src="assets/images/{{weatherName}}.png" alt="Light cloud actual weather">
+  </div>
+  <div class="text-center">
+      <span class="thermometer text-9xl pb-16">{{temp}}<span class="tmp-format text-5xl">ºC</span></span>
+  </div>
+  <div class="text-center pt-16 pb-16">
+      <span class="weather text-3xl font-bold ">{{weatherName}}</span>
+  </div>
+  <div class="text-center pt-5 pb-5">
+      <span class="day-time pt-10">Today · {{actualDate | date : 'EEE, MMMM d'}}</span>
+  </div>
+  <div class="text-center">
+      <i class="fa fa-map-marker" aria-hidden="true"></i>
+      <span class="location px-2">{{location}}</span>
+  </div>
+</aside>

@@ -1,1 +1,386 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+:root {
+    --light-background: #1E213A;
+    --dark-background: #100E1D;
+    --progress-bar: #FFEC65;
+    --gray-btn: #6E707A;
+    --gray-tipography:#A09FB1;
+    --color: #E7E7EB;
+    --sidebar-width: 31.875%;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Raleway', sans-serif;
+    color: var(--color);
+}
+/*================ SIDE BAR ================*/
+.btn-gray {
+    background-color: var(--gray-btn);
+    font-size: 16px;
+}
+.sidebar {
+    background-color: var(--light-background);
+    width: var(--sidebar-width);
+    position: absolute;
+    height: 100%;
+    display: inline-table;
+}
+.sidebar > div:last-of-type {
+    color: var(--gray-tipography);
+}
+.sidebar-header {
+    display: flex;
+    justify-content: space-around;
+}
+.actual-weather {
+    width: 100%;
+    height: 25em;
+}
+.clouds-bg img {
+    height: 100%;
+    object-fit: cover;
+}
+.actual-weather > img {
+    position: absolute;
+    top: 17%;
+    left: 25%;
+}
+.tmp-format, .weather, .day-time, .location {
+    color: var(--gray-tipography);
+}
+/*================ SEARCH SIDEBAR ================*/
+.sidebar-search {
+    background-color: var(--light-background);
+    width: var(--sidebar-width);
+    position: absolute;
+    height: 100%;
+    display: inline-table;
+}
+.close-btn {
+    margin-left: 90%;
+    padding: 1em 0;
+    outline: none;
+}
+.search-box input[type="search"] {
+    background-color: var(--light-background);
+    border: 1px solid var(--gray-tipography);
+    padding-left: 2.75em;
+    outline: none;
+}
+.search-box button {
+    background-color: #3C47E9;
+    color: #fff;
+    outline: none;
+}
+.search-box > div {
+    text-align: center;
+    padding-bottom: 2em;
+}
+.search-box > div > span {
+    padding: 0.8em;
+}
+.search-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-result button{
+    width: 80%;
+    padding: .5em;
+    margin-top: 1em;
+}
+.search-result button:hover{
+    border: 1px solid #ccc;
+}
+.search-result button:last-of-type{
+    margin-bottom: 10em;
+}
+
+/*================ MAIN CONTENT ================*/
+.main-content {
+    background-color: var(--dark-background);
+    margin-left: var(--sidebar-width);
+    position: absolute;
+    height: 100%;
+    display: inline-table;
+}
+.main-content h2 {
+    margin-left: 15%;
+    padding-bottom: 1.5em;
+}
+.btn-temperature {
+    background-color: var(--color);
+    color: var(--dark-background);
+    border-radius: 16px;
+    width: 2em;
+    height: 2em;
+    position: absolute;
+    right: 10.5rem;
+}
+.btn-temperature:last-of-type {
+    background-color: #585676;
+    color: var(--color);
+    right: 8rem;
+}
+.container-weekly-card {
+    display: flex;
+    justify-content: center;
+}
+.weekly-card {
+    background-color: var(--light-background);
+    border-radius: 3px;
+    width: 13%;
+    height: 10em;
+    margin-left: 1.25em;
+    padding: .5em 1em;
+    position: relative;
+    text-align: center;
+}
+.weekly-card img {
+    width: 70%;
+    margin: auto;
+}
+.weekly-card footer {
+    position: absolute;
+    bottom: 8px;
+}
+.weekly-card footer .min-temp {
+    margin-left: 2em;
+    color: var(--gray-tipography);
+}
+#todays-highlights {
+    margin-top: 3em;
+}
+.container-todays-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2.5em;
+    width: 75%;
+    margin: auto;
+}
+.todays-card {
+    background-color: var(--light-background);
+    margin-left: 6%;
+    text-align: center;
+    height: 12em;
+    border-radius: 3px;
+}
+.todays-card:last-of-type, .todays-card:nth-of-type(3) {
+    height: 9em;
+}
+.todays-card h3 {
+    padding: 1em .5em 0em .5em;
+}
+.todays-card > span {
+    font-size: 3rem;
+}
+.todays-card > span > span {
+    font-size: 2rem;
+}
+.container-percentage {
+    display: flex;
+    justify-content: space-around;
+}
+.todays-card  .bar-background {
+    background-color: #e2e2e2;
+    border-radius: 30px;
+    height: 10px;
+    margin: .15em auto;
+    position: relative;
+    width: 70%;
+}
+.todays-card .bar-progress {
+    background-color: var(--progress-bar);
+    position: absolute;
+    height: 100%;
+    border-radius: 30px;
+}
+.todays-card footer > span {
+    margin-left: 66%;
+}
+#todays-highlights > footer {
+    color: var(--gray-tipography);
+    text-align: center;
+    padding-bottom: 2em;
+    margin-top: 6.95em;
+}
+
+.preloader {
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  position: fixed;
+  z-index: 99999;
+  background: #fff
+}
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  top: calc(50% - 3.5px);
+  left: calc(50% - 3.5px)
+}
+.lds-ripple .lds-pos {
+  position: absolute;
+  border: 2px solid #2962FF;
+  opacity: 1;
+  border-radius: 50%;
+  -webkit-animation: lds-ripple 1s cubic-bezier(0, 0.1, 0.5, 1) infinite;
+  animation: lds-ripple 1s cubic-bezier(0, 0.1, 0.5, 1) infinite
+}
+
+.lds-ripple .lds-pos:nth-child(2) {
+  -webkit-animation-delay: -0.5s;
+  animation-delay: -0.5s
+}
+
+@-webkit-keyframes lds-ripple {
+  0% {
+      top: 28px;
+      left: 28px;
+      width: 0;
+      height: 0;
+      opacity: 0
+  }
+  5% {
+      top: 28px;
+      left: 28px;
+      width: 0;
+      height: 0;
+      opacity: 1
+  }
+  to {
+      top: -1px;
+      left: -1px;
+      width: 58px;
+      height: 58px;
+      opacity: 0
+  }
+}
+
+@keyframes lds-ripple {
+  0% {
+      top: 28px;
+      left: 28px;
+      width: 0;
+      height: 0;
+      opacity: 0
+  }
+  5% {
+      top: 28px;
+      left: 28px;
+      width: 0;
+      height: 0;
+      opacity: 1
+  }
+  to {
+      top: -1px;
+      left: -1px;
+      width: 58px;
+      height: 58px;
+      opacity: 0
+  }
+}
+
+@media all and (max-width:1340px) {
+    .weekly-card footer .min-temp {
+        margin-left: 0.2em;
+    }
+    .actual-weather > img {
+        left: 20%;
+    }
+    .weekly-card {
+        height: 12em;
+    }
+    #todays-highlights > footer {
+        margin-top: 4.5em;
+    }
+}
+
+@media all and (max-width:1020px) {
+  .weekly-card footer {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
+@media all and (max-width:950px) {
+    .actual-weather > img {
+        left: 9%;
+    }
+    .weekly-card {
+      margin-left: .5em;
+    }
+    .todays-card:last-of-type, .todays-card:nth-of-type(3) {
+      height: 12em;
+    }
+}
+
+@media all and (max-width:800px) {
+    .actual-weather > img {
+        left: 2%;
+    }
+}
+
+@media all and (max-width:735px) {
+    .sidebar {
+        background-color: var(--light-background);
+        width: 100%;
+        position: relative;
+    }
+    .actual-weather > img {
+        left: 33%;
+    }
+    .main-content {
+        margin-left: 0px;
+        height: 100%;
+        position: relative;
+    }
+    .container-weekly-card {
+        flex-wrap: wrap;
+    }
+    .weekly-card {
+        width: 32%;
+        margin-top: 2em;
+    }
+    .weekly-card:first-of-type, .weekly-card:nth-of-type(2) {
+        margin-top: 0px;
+    }
+    #todays-highlights > footer {
+        position: relative;
+        margin-top: 4em;
+        padding-bottom: 2em;
+        bottom: 0px;
+        left: 0px;
+        text-align: center;
+    }
+    .container-todays-card {
+        grid-template-columns: 1fr;
+        grid-gap: 1.5em;
+    }
+}
+
+@media all and (max-width:430px) {
+    .actual-weather > img {
+        left: 20%;
+    }
+}
+@media all and (max-width:350px) {
+    .actual-weather > img {
+        left: 15%;
+    }
+}
+@media all and (max-width:250px) {
+    .actual-weather > img {
+        left: 1%;
+    }
+}
