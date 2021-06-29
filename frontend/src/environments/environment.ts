@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  proxy: 'https://cors-anywhere.herokuapp.com/',
+  base_url: 'https://www.metaweather.com'
 };
 
 /*

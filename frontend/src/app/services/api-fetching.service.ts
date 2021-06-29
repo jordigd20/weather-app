@@ -1,41 +1,50 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators'
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiFetchingService {
 
-  private weeklyWeather: [] = [];
-  private location: string = '';
+  public saveWoeid: number = 0;
 
   constructor( private http: HttpClient) { }
 
   searchWeather(woeid: number) {
-    const proxy = 'https://cors-anywhere.herokuapp.com/';
-    const url = 'https://www.metaweather.com';
     const api = `/api/location/${woeid}`;
 
-    // const request =
-    return this.http.get(`${proxy}${url}${api}`).pipe(
+    return this.http.get(`${environment.proxy}${environment.base_url}${api}`).pipe(
       map( (res: any) => {
-        this.weeklyWeather = res.consolidated_weather;
-        this.location = res.title;
-        console.log('Paso por aqui');
         return [res.consolidated_weather, res.title];
       })
     );
 
   }
 
+  searchLocation(location: string) {
+    const api = `/api/location/search/?query=${location}`;
 
-  get getWeeklyWeather(): [] {
-    return this.weeklyWeather;
+    return this.http.get(`${environment.proxy}${environment.base_url}${api}`).pipe(
+      map( (res: any) => {
+        const result = {
+          woeid: res[0]?.woeid,
+          title: res[0]?.title
+        }
+
+        return result;
+      })
+    );
+
   }
 
-  get getLocation(): string {
-    return this.location;
+  setWoeid(id: number): void {
+    this.saveWoeid = id;
+  }
+
+  get getSavedWoeid(): number {
+    return this.saveWoeid;
   }
 
 }

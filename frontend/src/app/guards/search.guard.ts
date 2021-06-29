@@ -17,6 +17,11 @@ export class SearchGuard implements CanActivate {
       this.router.navigateByUrl('/home');
     }
 
+    Object.keys(route.queryParams).forEach( param => {
+        if(param !== 'query')
+          this.router.navigateByUrl('/search');
+    });
+
     return true;
   }
 

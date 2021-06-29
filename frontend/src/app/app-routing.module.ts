@@ -12,6 +12,7 @@ import { SearchGuard } from './guards/search.guard';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'search', component: SearchComponent, canActivate: [SearchGuard]},
+  { path: 'search/:query', component: SearchComponent, canActivate: [SearchGuard]},
   { path:'**', redirectTo: 'home'}
 ];
 

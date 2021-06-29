@@ -77,11 +77,14 @@ body {
     color: #fff;
     outline: none;
 }
-.search-box > div {
+.search-box button:hover {
+  cursor: pointer;
+}
+.search-box > form {
     text-align: center;
     padding-bottom: 2em;
 }
-.search-box > div > span {
+.search-box > form > span {
     padding: 0.8em;
 }
 .search-result {
