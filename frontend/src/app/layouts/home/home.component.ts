@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
     if (localStorage.getItem('weeklyData') === null || weatherData[0].applicable_date !== dateFormat) {
 
       this.apiFetchingService.searchWeather(woeid)
-        .subscribe( (res: any) => {
+          .subscribe( (res: any) => {
             this.weeklyData = res;
             this.notWaiting = true;
             localStorage.setItem('weeklyData', JSON.stringify(res));
@@ -46,18 +46,21 @@ export class HomeComponent implements OnInit {
             console.warn(err);
             this.notWaiting = true;
 
+            // If the data is not found, removes the woeid to reset it when reloading the page
             if(err.statusText === 'Not Found') {
               localStorage.removeItem('woeid');
-              this.router.navigateByUrl('/home');
+              this.router.navigateByUrl('');
             }
 
             let htmlMsg = '';
+            // This error occurs when the acces to the API is temporarily disabled
             if(err.error === 'See /corsdemo for more info\n') {
               htmlMsg =
                 `<p>The access to the API is temporarily disabled, please access the following link to grant access to the API
                 <a href="https://cors-anywhere.herokuapp.com/corsdemo" style="color: #00aaff" target="_blank">https://cors-anywhere.herokuapp.com/corsdemo</a></p>`
             }
 
+            // This shows a modal message error
             Swal.fire({
               title: 'Error!',
               html: htmlMsg || err.error,
@@ -66,6 +69,7 @@ export class HomeComponent implements OnInit {
               allowOutsideClick: false
             }).then( () => {
 
+              // If there is data in the localStorage at least this shows the page with the stored data, if not, then just appears the preloader.
               if(localStorage.getItem('weeklyData') !== null)
                 this.weeklyData = JSON.parse(localStorage.getItem('weeklyData') ?? '{}');
               else
@@ -73,7 +77,7 @@ export class HomeComponent implements OnInit {
 
             });
 
-        });
+          });
 
     }
 

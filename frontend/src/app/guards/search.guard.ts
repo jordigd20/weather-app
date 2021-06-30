@@ -14,7 +14,7 @@ export class SearchGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     if(localStorage.getItem('weeklyData') === null) {
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('');
     }
 
     Object.keys(route.queryParams).forEach( param => {

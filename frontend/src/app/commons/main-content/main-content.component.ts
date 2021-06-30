@@ -13,7 +13,7 @@ export class MainContentComponent implements OnInit {
   constructor(private apifetching: ApiFetchingService) { }
 
   ngOnInit(): void {
-    console.log('Main content recibe esto:',this.weeklyData);
+    // console.log('Main content recibe esto:',this.weeklyData);
   }
 
   roundNumber(num: number):number {

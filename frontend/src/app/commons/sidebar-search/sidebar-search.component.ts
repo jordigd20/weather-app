@@ -18,19 +18,18 @@ export class SidebarSearchComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.locations);
+    // console.log(this.locations);
   }
 
   onSubmit() {
-    console.log(this.searchForm.value)
+    // console.log(this.searchForm.value)
     const inputLocation = this.searchForm.value.location;
     this.router.navigateByUrl(`/search?query=${inputLocation}`);
   }
 
   search(woeid: number) {
-    console.log(woeid);
     localStorage.setItem('woeid', JSON.stringify(woeid));
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('');
   }
 
 }

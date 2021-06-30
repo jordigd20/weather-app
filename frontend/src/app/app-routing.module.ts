@@ -5,15 +5,17 @@ import { SearchComponent } from './layouts/search/search.component';
 import { SearchGuard } from './guards/search.guard';
 
 /*
-  /home === **  ->   Home
-  /search       ->   Search sidebar
+  '' === **                               ->   Home
+  /search                                 ->   Search sidebar
+  /search?query=location                  ->   Search location in the API
+  /search?query=location&query=location   ->   Search each location in the API
 */
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
   { path: 'search', component: SearchComponent, canActivate: [SearchGuard]},
   { path: 'search/:query', component: SearchComponent, canActivate: [SearchGuard]},
-  { path:'**', redirectTo: 'home'}
+  { path: '', component: HomeComponent },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

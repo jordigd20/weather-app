@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map } from 'rxjs/operators'
+import { map } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -37,14 +37,6 @@ export class ApiFetchingService {
       })
     );
 
-  }
-
-  setWoeid(id: number): void {
-    this.saveWoeid = id;
-  }
-
-  get getSavedWoeid(): number {
-    return this.saveWoeid;
   }
 
 }
