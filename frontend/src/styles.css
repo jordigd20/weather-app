@@ -7,7 +7,6 @@
     --gray-btn: #6E707A;
     --gray-tipography:#A09FB1;
     --color: #E7E7EB;
-    --sidebar-width: 31.875%;
 }
 * {
     margin: 0;
@@ -18,6 +17,17 @@ body {
     font-family: 'Raleway', sans-serif;
     color: var(--color);
 }
+
+#main-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+        'sidebar content content';
+    height: 100vh;
+}
+.content-area {
+  grid-area: content;
+}
 /*================ SIDE BAR ================*/
 .btn-gray {
     background-color: var(--gray-btn);
@@ -25,10 +35,9 @@ body {
 }
 .sidebar {
     background-color: var(--light-background);
-    width: var(--sidebar-width);
-    position: absolute;
     height: 100%;
-    display: inline-table;
+    grid-area: sidebar;
+    width: 100%;
 }
 .sidebar > div:last-of-type {
     color: var(--gray-tipography);
@@ -48,7 +57,8 @@ body {
 .actual-weather > img {
     position: absolute;
     top: 17%;
-    left: 25%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .tmp-format, .weather, .day-time, .location {
     color: var(--gray-tipography);
@@ -56,10 +66,9 @@ body {
 /*================ SEARCH SIDEBAR ================*/
 .sidebar-search {
     background-color: var(--light-background);
-    width: var(--sidebar-width);
-    position: absolute;
+    grid-area: sidebar;
     height: 100%;
-    display: inline-table;
+    width: 100%;
 }
 .close-btn {
     margin-left: 90%;
@@ -76,6 +85,8 @@ body {
     background-color: #3C47E9;
     color: #fff;
     outline: none;
+    height: 2.65em;
+    margin-left: .5em;
 }
 .search-box button:hover {
   cursor: pointer;
@@ -94,24 +105,20 @@ body {
 }
 
 .search-result button{
-    width: 80%;
-    padding: .5em;
-    margin-top: 1em;
+  width: 80%;
+  padding: 0.85em;
+  margin-top: 1em;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
 }
-.search-result button:hover{
-    border: 1px solid #ccc;
-}
-.search-result button:last-of-type{
-    margin-bottom: 10em;
-}
+
 
 /*================ MAIN CONTENT ================*/
 .main-content {
     background-color: var(--dark-background);
-    margin-left: var(--sidebar-width);
-    position: absolute;
     height: 100%;
-    display: inline-table;
+    width: 100%;
 }
 .main-content h2 {
     margin-left: 15%;
@@ -132,26 +139,32 @@ body {
     right: 8rem;
 }
 .container-weekly-card {
-    display: flex;
-    justify-content: center;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    gap: .5em;
+    width: 75%;
 }
 .weekly-card {
     background-color: var(--light-background);
     border-radius: 3px;
-    width: 13%;
+    width: 100%;
     height: 10em;
-    margin-left: 1.25em;
     padding: .5em 1em;
     position: relative;
     text-align: center;
 }
 .weekly-card img {
-    width: 70%;
+    width: 4.5em;
     margin: auto;
 }
 .weekly-card footer {
     position: absolute;
     bottom: 8px;
+    left: 8px;
+    display: flex;
+    width: 90%;
+    justify-content: center;
 }
 .weekly-card footer .min-temp {
     margin-left: 2em;
@@ -162,7 +175,7 @@ body {
 }
 .container-todays-card {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     grid-gap: 2.5em;
     width: 75%;
     margin: auto;
@@ -293,97 +306,48 @@ body {
   }
 }
 
-@media all and (max-width:1340px) {
-    .weekly-card footer .min-temp {
-        margin-left: 0.2em;
-    }
-    .actual-weather > img {
-        left: 20%;
-    }
-    .weekly-card {
-        height: 12em;
-    }
-    #todays-highlights > footer {
-        margin-top: 4.5em;
+@media all and (max-width:1380px) {
+    .container-todays-card {
+        grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
     }
 }
 
-@media all and (max-width:1020px) {
-  .weekly-card footer {
-    display: flex;
-    flex-direction: column;
+@media all and (max-width:950px) {
+    .container-todays-card {
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    }
+    .todays-card:last-of-type, .todays-card:nth-of-type(3) {
+      height: 11em;
+    }
+    .search-box input[type="search"] {
+      width: 70%;
+    }
+}
+
+@media all and (max-width:820px) {
+  #main-container {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+          'sidebar'
+          'content';
+  }
+  .search-result button:last-of-type {
+    margin-bottom: 3em;
+  }
+  .btn-temperature {
+    right: 5.5rem;
+    transform: translateX(50%);
+  }
+  .btn-temperature:last-of-type {
+    right: 3rem;
   }
 }
 
-
-@media all and (max-width:950px) {
-    .actual-weather > img {
-        left: 9%;
-    }
-    .weekly-card {
-      margin-left: .5em;
-    }
-    .todays-card:last-of-type, .todays-card:nth-of-type(3) {
-      height: 12em;
-    }
-}
-
-@media all and (max-width:800px) {
-    .actual-weather > img {
-        left: 2%;
-    }
-}
-
 @media all and (max-width:735px) {
-    .sidebar {
-        background-color: var(--light-background);
-        width: 100%;
-        position: relative;
-    }
-    .actual-weather > img {
-        left: 33%;
-    }
-    .main-content {
-        margin-left: 0px;
-        height: 100%;
-        position: relative;
-    }
-    .container-weekly-card {
-        flex-wrap: wrap;
-    }
-    .weekly-card {
-        width: 32%;
-        margin-top: 2em;
-    }
-    .weekly-card:first-of-type, .weekly-card:nth-of-type(2) {
-        margin-top: 0px;
-    }
     #todays-highlights > footer {
-        position: relative;
         margin-top: 4em;
-        padding-bottom: 2em;
-        bottom: 0px;
-        left: 0px;
-        text-align: center;
     }
     .container-todays-card {
-        grid-template-columns: 1fr;
         grid-gap: 1.5em;
-    }
-}
-
-@media all and (max-width:430px) {
-    .actual-weather > img {
-        left: 20%;
-    }
-}
-@media all and (max-width:350px) {
-    .actual-weather > img {
-        left: 15%;
-    }
-}
-@media all and (max-width:250px) {
-    .actual-weather > img {
-        left: 1%;
     }
 }

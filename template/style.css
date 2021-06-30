@@ -1,3 +1,4 @@
+/* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 :root {
     --light-background: #1E213A;
@@ -17,20 +18,31 @@ body {
     font-family: 'Raleway', sans-serif;
     color: var(--color);
 }
+
+#main-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 
+        'sidebar content content';
+    height: 100vh;
+}
+
 /*================ SIDE BAR ================*/
-.btn-gray { 
+.btn-gray {
     background-color: var(--gray-btn);
     font-size: 16px;
 }
-.sidebar { 
-    background-color: var(--light-background); 
-    width: var(--sidebar-width);
-    position: absolute;
+.sidebar {
+    background-color: var(--light-background);
+    /* width: var(--sidebar-width); */
+    /* position: absolute; */
+    height: 100%;
+    grid-area: sidebar;
 }
 .sidebar > div:last-of-type {
     color: var(--gray-tipography);
 }
-.sidebar-header { 
+.sidebar-header {
     display: flex;
     justify-content: space-around;
 }
@@ -45,18 +57,18 @@ body {
 .actual-weather > img {
     position: absolute;
     top: 17%;
-    left: 25%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .tmp-format, .weather, .day-time, .location {
     color: var(--gray-tipography);
 }
 /*================ SEARCH SIDEBAR ================*/
 .sidebar-search {
-    background-color: var(--light-background); 
-    width: var(--sidebar-width);
+    background-color: var(--light-background);
+    /* width: var(--sidebar-width); */
     position: absolute;
     height: 100%;
-    display: inline-table;
 }
 .close-btn {
     margin-left: 90%;
@@ -74,11 +86,14 @@ body {
     color: #fff;
     outline: none;
 }
-.search-box > div {
+.search-box button:hover {
+  cursor: pointer;
+}
+.search-box > form {
     text-align: center;
     padding-bottom: 2em;
 }
-.search-box > div > span {
+.search-box > form > span {
     padding: 0.8em;
 }
 .search-result {
@@ -100,16 +115,19 @@ body {
 }
 
 /*================ MAIN CONTENT ================*/
-.main-content { 
+.main-content {
     background-color: var(--dark-background);
-    margin-left: var(--sidebar-width); 
-    position: relative;
+    /* margin-left: var(--sidebar-width); */
+    /* position: absolute; */
+    height: 100%;
+    /* width: 100%; */
+    grid-area: content;
 }
-.main-content h2 { 
+.main-content h2 {
     margin-left: 15%;
     padding-bottom: 1.5em;
 }
-.btn-temperature { 
+.btn-temperature {
     background-color: var(--color);
     color: var(--dark-background);
     border-radius: 16px;
@@ -123,27 +141,35 @@ body {
     color: var(--color);
     right: 8rem;
 }
-.container-weekly-card { 
-    display: flex;
-    justify-content: center;
+.container-weekly-card {
+    /* display: flex; */
+    /* justify-content: center; */
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    gap: .5em;
+    width: 75%;
 }
-.weekly-card { 
-    background-color: var(--light-background); 
+.weekly-card {
+    background-color: var(--light-background);
     border-radius: 3px;
-    width: 13%;
+    width: 100%;
     height: 10em;
-    margin-left: 1.25em;
     padding: .5em 1em;
     position: relative;
     text-align: center;
 }
-.weekly-card img { 
-    width: 70%;
+.weekly-card img {
+    width: 4.5em;
     margin: auto;
 }
 .weekly-card footer {
     position: absolute;
     bottom: 8px;
+    left: 8px;
+    display: flex;
+    width: 90%;
+    justify-content: center;
 }
 .weekly-card footer .min-temp {
     margin-left: 2em;
@@ -154,7 +180,7 @@ body {
 }
 .container-todays-card {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     grid-gap: 2.5em;
     width: 75%;
     margin: auto;
@@ -168,7 +194,7 @@ body {
 }
 .todays-card:last-of-type, .todays-card:nth-of-type(3) {
     height: 9em;
-} 
+}
 .todays-card h3 {
     padding: 1em .5em 0em .5em;
 }
@@ -206,31 +232,36 @@ body {
     margin-top: 6.95em;
 }
 
-@media all and (max-width:1340px) {
-    .weekly-card footer .min-temp {
-        margin-left: 0.2em;
-    }
-    .actual-weather > img {
-        left: 20%;
-    }
-    .weekly-card {
-        height: 12em;
-    }
-    #todays-highlights > footer { 
-        margin-top: 4.5em;
+@media all and (max-width:1365px) {
+    .container-todays-card {
+        grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
     }
 }
 
+@media all and (max-width:820px) {
+    #main-container {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            'sidebar'
+            'content';
+    }
+}
+
+
+
 @media all and (max-width:950px) {
-    .actual-weather > img {
+    /* .actual-weather > img {
         left: 9%;
+    } */
+    .container-todays-card {
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
     }
 }
 
 @media all and (max-width:800px) {
-    .actual-weather > img {
+    /* .actual-weather > img {
         left: 2%;
-    }
+    } */
 }
 
 @media all and (max-width:735px) {
@@ -239,38 +270,18 @@ body {
         width: 100%;
         position: relative;
     }
-    .actual-weather > img {
+    /* .actual-weather > img {
         left: 33%;
-    }
-    .main-content {
-        margin-left: 0px;
-        height: 100%;
-    }
-    .container-weekly-card {
-        flex-wrap: wrap;
-    }
-    .weekly-card {
-        width: 32%;
-        margin-top: 2em;
-    }
-    .weekly-card:first-of-type, .weekly-card:nth-of-type(2) {
-        margin-top: 0px;
-    } 
-    #todays-highlights > footer { 
-        position: relative;
+    } */
+    #todays-highlights > footer {
         margin-top: 4em;
-        padding-bottom: 2em;
-        bottom: 0px;
-        left: 0px;
-        text-align: center;
     }
     .container-todays-card {
-        grid-template-columns: 1fr;
         grid-gap: 1.5em;
     }
 }
 
-@media all and (max-width:430px) {
+/* @media all and (max-width:430px) {
     .actual-weather > img {
         left: 20%;
     }
@@ -284,4 +295,4 @@ body {
     .actual-weather > img {
         left: 1%;
     }
-}
+} */

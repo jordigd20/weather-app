@@ -4,7 +4,7 @@
       <div class="lds-pos"></div>
   </div>
 </div>
-<div *ngIf="weeklyData.length !== 0">
+<div id="main-container" *ngIf="weeklyData.length !== 0">
   <app-sidebar-weather [weeklyData]="weeklyData"></app-sidebar-weather>
-  <app-main-content [weeklyData]="weeklyData"></app-main-content>
+  <app-main-content class="content-area" [weeklyData]="weeklyData"></app-main-content>
 </div>
