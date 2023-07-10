@@ -1,6 +1,8 @@
 <aside class="sticky top-0 min-h-screen bg-[#1e213a] flex flex-col justify-between">
   <header class="p-10 flex items-center justify-between">
-    <button class="px-4 py-2 rounded bg-[#6e707a] text-white">Search for places</button>
+    <button class="px-4 py-2 rounded bg-[#6e707a] text-white" (click)="displaySearchbar()">
+      Search for places
+    </button>
     <button class="p-2 rounded-full bg-[#6e707a] text-white">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
         <path
@@ -10,6 +12,7 @@
       </svg>
     </button>
   </header>
+
   <div class="relative">
     <img
       src="/assets/cloud-background.png"

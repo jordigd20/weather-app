@@ -1,4 +1,10 @@
-<div class="min-h-screen grid lg:grid-cols-[400px_1fr]">
-  <app-sidebar></app-sidebar>
-  <app-details></app-details>
+<div class="min-h-screen">
+  <app-searchbar
+    [isSearchbarDisplayed]="isSearchbarDisplayed()"
+    (isSearchbarVisible)="onSearchbarDisplayed($event)"
+  />
+  <div class="grid lg:grid-cols-[400px_1fr]">
+    <app-sidebar (isSearchbarVisible)="onSearchbarDisplayed($event)" />
+    <app-details />
+  </div>
 </div>
