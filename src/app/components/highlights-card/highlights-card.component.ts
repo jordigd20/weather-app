@@ -5,8 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-highlights-card',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './highlights-card.component.html',
-  styleUrls: ['./highlights-card.component.css']
+  templateUrl: './highlights-card.component.html'
 })
 export class HighlightsCardComponent {
   @Input({ required: true }) title: string = '';

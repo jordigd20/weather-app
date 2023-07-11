@@ -8,8 +8,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
   selector: 'app-forecast',
   standalone: true,
   imports: [CommonModule, ForecastCardComponent],
-  templateUrl: './forecast.component.html',
-  styleUrls: ['./forecast.component.css']
+  templateUrl: './forecast.component.html'
 })
 export class ForecastComponent {
   weatherService = inject(WeatherService);

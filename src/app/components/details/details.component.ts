@@ -8,7 +8,6 @@ import { FooterComponent } from '../footer/footer.component';
   selector: 'app-details',
   standalone: true,
   imports: [CommonModule, ForecastComponent, HighlightsComponent, FooterComponent],
-  templateUrl: './details.component.html',
-  styleUrls: ['./details.component.css']
+  templateUrl: './details.component.html'
 })
 export class DetailsComponent {}

@@ -20,7 +20,6 @@ const enterFromRight = trigger('enterFromRight', [
   standalone: true,
   imports: [CommonModule, SearchbarFormComponent, SearchbarListComponent],
   templateUrl: './searchbar.component.html',
-  styleUrls: ['./searchbar.component.css'],
   animations: [enterFromRight]
 })
 export class SearchbarComponent {

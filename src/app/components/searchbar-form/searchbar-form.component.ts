@@ -5,9 +5,6 @@ import { CommonModule } from '@angular/common';
   selector: 'app-searchbar-form',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './searchbar-form.component.html',
-  styleUrls: ['./searchbar-form.component.css']
+  templateUrl: './searchbar-form.component.html'
 })
-export class SearchbarFormComponent {
-
-}
+export class SearchbarFormComponent {}

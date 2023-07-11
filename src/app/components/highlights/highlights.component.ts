@@ -6,9 +6,6 @@ import { HighlightsCardComponent } from '../highlights-card/highlights-card.comp
   selector: 'app-highlights',
   standalone: true,
   imports: [CommonModule, HighlightsCardComponent],
-  templateUrl: './highlights.component.html',
-  styleUrls: ['./highlights.component.css']
+  templateUrl: './highlights.component.html'
 })
-export class HighlightsComponent {
-
-}
+export class HighlightsComponent {}

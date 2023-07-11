@@ -6,8 +6,7 @@ import { SearchbarComponent } from '../searchbar/searchbar.component';
   selector: 'app-sidebar',
   standalone: true,
   imports: [CommonModule, SearchbarComponent],
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  templateUrl: './sidebar.component.html'
 })
 export class SidebarComponent {
   @Output() isSearchbarVisible = new EventEmitter<boolean>();

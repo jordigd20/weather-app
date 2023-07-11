@@ -5,9 +5,6 @@ import { CommonModule } from '@angular/common';
   selector: 'app-searchbar-list',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './searchbar-list.component.html',
-  styleUrls: ['./searchbar-list.component.css']
+  templateUrl: './searchbar-list.component.html'
 })
-export class SearchbarListComponent {
-
-}
+export class SearchbarListComponent {}

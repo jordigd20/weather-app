@@ -10,8 +10,7 @@ type TemperatureUnit = 'C' | 'F';
   selector: 'app-forecast-card',
   standalone: true,
   imports: [CommonModule, RoundPipe],
-  templateUrl: './forecast-card.component.html',
-  styleUrls: ['./forecast-card.component.css']
+  templateUrl: './forecast-card.component.html'
 })
 export class ForecastCardComponent {
   @Input({ required: true }) date: string = '';
