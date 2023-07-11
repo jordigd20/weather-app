@@ -1,8 +1,30 @@
-<article class="bg-[#1E213A] p-4 flex flex-col justify-between text-center rounded">
-  <h3 class="text-[#e7e7eb] text-xl">Sun, 7 Jun</h3>
-  <img src="/assets/clear.png" alt="Clear" class="w-32 m-auto" />
+<article
+  *ngIf="date && day; else loading"
+  class="bg-[#1E213A] p-4 flex flex-col justify-between text-center rounded h-52"
+>
+  <h3 class="text-[#e7e7eb] text-xl">{{ date | date : 'EE, d MMM' }}</h3>
+  <img
+    [src]="'/assets/' + conditionCodes[day.condition.code] + '.png'"
+    [alt]="day.condition.text"
+    class="w-32 m-auto"
+  />
   <div class="flex items-center justify-between">
-    <span class="text-[#e7e7eb] text-xl">16ºC</span>
-    <span class="text-[#a09fb1] text-xl">11ºC</span>
+    <span class="text-[#e7e7eb] text-xl">{{
+      temperatureUnit === 'C' ? (day.mintemp_c | round) : (day.mintemp_f | round)
+    }}</span>
+    <span class="text-[#a09fb1] text-xl">{{
+      temperatureUnit === 'C' ? (day.maxtemp_c | round) : (day.maxtemp_f | round)
+    }}</span>
   </div>
 </article>
+
+<ng-template #loading>
+  <article class="bg-[#1E213A] p-4 flex flex-col justify-between text-center rounded">
+    <div class="rounded h-4 w-full bg-[#616475] animate-pulse"></div>
+    <div class="w-24 h-24 rounded-full my-4 mx-auto bg-[#616475] animate-pulse"></div>
+    <div class="flex items-center justify-between gap-12">
+      <div class="rounded h-4 w-10 bg-[#616475] animate-pulse"></div>
+      <div class="rounded h-4 w-10 bg-[#616475] animate-pulse"></div>
+    </div>
+  </article>
+</ng-template>

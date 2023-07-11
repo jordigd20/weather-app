@@ -1,8 +1,23 @@
 <header>
-  <h2 class="mb-4 text-2xl text-[#e7e7eb]">Forecast</h2>
+  <h2 class="mb-4 text-2xl text-[#e7e7eb] font-bold">Forecast</h2>
   <div class="flex flex-wrap gap-4">
-    <app-forecast-card class="flex-auto" />
-    <app-forecast-card class="flex-auto" />
-    <app-forecast-card class="flex-auto" />
+    <ng-container *ngIf="forecastResponse(); else loading">
+      <app-forecast-card
+        *ngFor="let forecastDay of forecastResponse()?.forecast?.forecastday"
+        [date]="forecastDay.date"
+        [day]="forecastDay.day"
+        [temperatureUnit]="temperatureUnit()"
+        class="flex-auto"
+      />
+    </ng-container>
+
+    <ng-template #loading>
+      <app-forecast-card
+        *ngFor="let item of forecastDays"
+        [date]="''"
+        [temperatureUnit]="temperatureUnit()"
+        class="flex-auto"
+      />
+    </ng-template>
   </div>
 </header>
