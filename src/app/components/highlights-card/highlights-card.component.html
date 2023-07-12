@@ -4,20 +4,23 @@
     <span class="text-7xl font-bold">{{ number }}</span>
     <span class="text-3xl">{{ unity }}</span>
   </p>
-  <p *ngIf="status !== ''" class="p-4">
-    {{ status }}
+  <p *ngIf="windDirection !== ''" class="p-4">
+    {{ windDirection }}
   </p>
 
   <footer *ngIf="unity === '%'" class="px-4">
-    <div class="flex justify-between text-[#A09FB1]">
+    <div class="flex justify-between text-[#a09fb1]">
       <span>0</span>
       <span>50</span>
       <span>100</span>
     </div>
-    <div
-      class="w-full h-2 bg-[#e7e7eb] rounded-full relative after:absolute after:left-0 after:w-[50%] after:h-2 after:bg-[#FFEC65] after:rounded-full"
-    ></div>
-    <div class="flex justify-end text-[#A09FB1]">
+    <div class="w-full h-2 bg-[#e7e7eb] rounded-full relative">
+      <span
+        class="absolute left-0 h-2 bg-[#ffec65] rounded-full"
+        [ngStyle]="{ width: number + '%' }"
+      ></span>
+    </div>
+    <div class="flex justify-end text-[#a09fb1]">
       <span>%</span>
     </div>
   </footer>

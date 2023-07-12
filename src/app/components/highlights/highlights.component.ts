@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HighlightsCardComponent } from '../highlights-card/highlights-card.component';
+import { WeatherService } from 'src/app/services/weather.service';
 
 @Component({
   selector: 'app-highlights',
@@ -8,4 +9,9 @@ import { HighlightsCardComponent } from '../highlights-card/highlights-card.comp
   imports: [CommonModule, HighlightsCardComponent],
   templateUrl: './highlights.component.html'
 })
-export class HighlightsComponent {}
+export class HighlightsComponent {
+  weatherService = inject(WeatherService);
+  forecastResponse = this.weatherService.forecast;
+
+
+}

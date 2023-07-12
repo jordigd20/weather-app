@@ -1,9 +1,26 @@
 <section class="py-10 text-[#e7e7eb]">
   <h2 class="mb-4 text-2xl font-bold">Today's highlights</h2>
   <div class="grid sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
-    <app-highlights-card title="Wind status" number="10.5" unity="mph" status="ENE" />
-    <app-highlights-card title="Humidity" number="84" unity="%" />
-    <app-highlights-card title="Visibility" number="6,4" unity="miles" />
-    <app-highlights-card title="Air Pressure" number="998" unity="mb" />
+    <app-highlights-card
+      title="Wind status"
+      [number]="forecastResponse()?.current?.wind_kph ?? 0"
+      unity="kph"
+      [windDirection]="forecastResponse()?.current?.wind_dir ?? 'SW'"
+    />
+    <app-highlights-card
+      title="Humidity"
+      [number]="forecastResponse()?.current?.humidity ?? 0"
+      unity="%"
+    />
+    <app-highlights-card
+      title="Visibility"
+      [number]="forecastResponse()?.current?.vis_km ?? 0"
+      unity="km"
+    />
+    <app-highlights-card
+      title="Air Pressure"
+      [number]="forecastResponse()?.current?.pressure_mb ?? 0"
+      unity="mb"
+    />
   </div>
 </section>

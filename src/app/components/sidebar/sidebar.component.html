@@ -20,21 +20,28 @@
       class="w-full h-72 object-cover opacity-10"
     />
     <img
-      src="/assets/shower.png"
-      alt="Heavy Cloud"
+      *ngIf="forecastResponse()"
+      [src]="'/assets/' + conditionCodes[forecastResponse()!.current.condition.code] + '.png'"
+      [alt]="forecastResponse()!.current.condition.text"
       class="absolute top-2/4 left-[calc(50%)] -translate-x-2/4 -translate-y-2/4"
     />
   </div>
 
   <h1 class="text-white text-center mt-14">
-    <span class="text-9xl">15</span>
-    <span class="text-4xl text-gray-400">ºC</span>
+    <span class="text-9xl">{{
+      temperatureUnit() === 'C'
+        ? forecastResponse()?.current?.temp_c ?? 20
+        : forecastResponse()?.current?.temp_f ?? 68
+    }}</span>
+    <span class="text-4xl text-gray-400">{{ 'º' + temperatureUnit() }}</span>
   </h1>
 
-  <h2 class="text-gray-400 text-center text-4xl font-bold">Shower</h2>
+  <h2 class="text-gray-400 text-center text-4xl font-bold">
+    {{ forecastResponse()?.current?.condition?.text ?? 'Sunny' }}
+  </h2>
 
   <footer class="flex flex-col justify-center gap-3 py-10 text-lg">
-    <p class="text-gray-400 text-center">Today · Sat, 8 Jul</p>
+    <p class="text-gray-400 text-center">Today · {{ todayDate | date : 'EE, d MMM' }}</p>
     <div class="flex items-center justify-center gap-1 text-gray-400">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
         <path
@@ -42,7 +49,7 @@
           d="M12 11.5A2.5 2.5 0 0 1 9.5 9A2.5 2.5 0 0 1 12 6.5A2.5 2.5 0 0 1 14.5 9a2.5 2.5 0 0 1-2.5 2.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Z"
         />
       </svg>
-      <span>London</span>
+      <span>{{ currentLocation() }}</span>
     </div>
   </footer>
 </aside>
