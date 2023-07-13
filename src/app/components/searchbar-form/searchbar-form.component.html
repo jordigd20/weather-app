@@ -1,4 +1,4 @@
-<form class="flex items-center gap-3 relative mt-12">
+<form class="flex items-center gap-3 relative mt-12" (ngSubmit)="onSubmit()">
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -13,10 +13,15 @@
   </svg>
   <input
     type="search"
+    [(ngModel)]="searchQuery"
+    name="searchQuery"
     placeholder="Search location"
     class="pl-10 p-2 w-full outline-0 bg-[#1e213a] border-[1px] border-[#e7e7eb] text-[#e7e7eb] placeholder:text-[#616475] rounded"
   />
-  <button class="px-3 p-2 bg-[#3C47E9] border-[1px] border-[#3C47E9] text-[#e7e7eb] rounded">
+  <button
+    type="submit"
+    class="px-3 p-2 bg-[#3C47E9] border-[1px] border-[#3C47E9] text-[#e7e7eb] rounded hover:bg-[#1826DC] hover:border-[#1826DC] transition-colors duration-75"
+  >
     Search
   </button>
 </form>

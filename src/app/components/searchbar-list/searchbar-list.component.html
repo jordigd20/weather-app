@@ -1,9 +1,10 @@
 <ul class="mt-10">
-  <li class="mb-2">
+  <li *ngFor="let location of locations()" class="mb-2">
     <button
-      class="p-4 w-full flex justify-between text-[#e7e7eb] border-[1px] border-transparent text-start hover:border-[#616475]"
+      class="p-4 w-full flex justify-between text-[#e7e7eb] border-[1px] border-transparent text-start hover:border-[#616475] rounded"
+      (click)="selectLocation(location)"
     >
-      <span>London</span>
+      <span>{{ location.name + ', ' + location.country }}</span>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
         <path
           fill="currentColor"

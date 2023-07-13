@@ -1,9 +1,14 @@
 <aside class="sticky top-0 min-h-screen bg-[#1e213a] flex flex-col justify-between">
   <header class="p-10 flex items-center justify-between">
-    <button class="px-4 py-2 rounded bg-[#6e707a] text-white" (click)="displaySearchbar()">
+    <button
+      class="px-4 py-2 rounded bg-[#6e707a] text-white hover:bg-[#55575E] transition-colors duration-75"
+      (click)="searchbarService.toggleSearchbar()"
+    >
       Search for places
     </button>
-    <button class="p-2 rounded-full bg-[#6e707a] text-white">
+    <button
+      class="p-2 rounded-full bg-[#6e707a] text-white hover:bg-[#55575E] transition-colors duration-75"
+    >
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
         <path
           fill="currentColor"
@@ -30,13 +35,13 @@
   <h1 class="text-white text-center mt-14">
     <span class="text-9xl">{{
       temperatureUnit() === 'C'
-        ? forecastResponse()?.current?.temp_c ?? 20
-        : forecastResponse()?.current?.temp_f ?? 68
+        ? (forecastResponse()?.current?.temp_c ?? 20 | round)
+        : (forecastResponse()?.current?.temp_f ?? 68 | round)
     }}</span>
     <span class="text-4xl text-gray-400">{{ 'º' + temperatureUnit() }}</span>
   </h1>
 
-  <h2 class="text-gray-400 text-center text-4xl font-bold">
+  <h2 class="text-gray-400 text-center text-4xl font-bold px-4">
     {{ forecastResponse()?.current?.condition?.text ?? 'Sunny' }}
   </h2>
 
@@ -49,7 +54,7 @@
           d="M12 11.5A2.5 2.5 0 0 1 9.5 9A2.5 2.5 0 0 1 12 6.5A2.5 2.5 0 0 1 14.5 9a2.5 2.5 0 0 1-2.5 2.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Z"
         />
       </svg>
-      <span>{{ currentLocation() }}</span>
+      <span>{{ currentLocation().name }}</span>
     </div>
   </footer>
 </aside>

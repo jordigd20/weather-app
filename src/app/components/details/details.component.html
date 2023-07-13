@@ -1,8 +1,16 @@
 <main class="h-full bg-[#100e1d] p-4 lg:p-8">
   <div class="max-w-screen-lg m-auto flex flex-col justify-between h-full">
     <div class="flex items-center justify-end gap-3">
-      <button class="px-3 py-2 rounded-full text-[#110e3c] bg-[#e7e7eb] font-bold">ºC</button>
-      <button class="px-3 py-2 rounded-full text-white bg-[#585676] font-bold">ºF</button>
+      <button
+        class="px-3 py-2 rounded-full text-[#110e3c] bg-[#e7e7eb] font-bold hover:bg-white transition-colors duration-75"
+      >
+        ºC
+      </button>
+      <button
+        class="px-3 py-2 rounded-full text-white bg-[#585676] font-bold hover:bg-[#404059] transition-colors duration-75"
+      >
+        ºF
+      </button>
     </div>
 
     <app-forecast />

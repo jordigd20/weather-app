@@ -1,8 +1,11 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { SearchbarFormComponent } from '../searchbar-form/searchbar-form.component';
 import { SearchbarListComponent } from '../searchbar-list/searchbar-list.component';
+import { SearchbarService } from 'src/app/services/searchbar.service';
+import { WeatherService } from 'src/app/services/weather.service';
+import { LocationResponse } from 'src/app/interfaces/location';
 
 const enterFromRight = trigger('enterFromRight', [
   transition(':enter', [
@@ -23,10 +26,17 @@ const enterFromRight = trigger('enterFromRight', [
   animations: [enterFromRight]
 })
 export class SearchbarComponent {
-  @Input({ required: true }) isSearchbarDisplayed = false;
-  @Output() isSearchbarVisible = new EventEmitter<boolean>();
+  searchbarService = inject(SearchbarService);
+  weatherService = inject(WeatherService);
 
-  hideSearchbar() {
-    this.isSearchbarVisible.emit(false);
+  locationsFound = this.weatherService.locationsFound;
+
+  searchLocation(location: string) {
+    this.weatherService.searchLocation(location);
+  }
+
+  setLocation(location: LocationResponse) {
+    this.weatherService.setCurrentLocation(location);
+    this.searchbarService.toggleSearchbar();
   }
 }

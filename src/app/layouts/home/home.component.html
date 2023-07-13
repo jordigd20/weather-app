@@ -1,10 +1,7 @@
 <div class="min-h-screen">
-  <app-searchbar
-    [isSearchbarDisplayed]="isSearchbarDisplayed()"
-    (isSearchbarVisible)="onSearchbarDisplayed($event)"
-  />
+  <app-searchbar />
   <div class="grid lg:grid-cols-[400px_1fr]">
-    <app-sidebar (isSearchbarVisible)="onSearchbarDisplayed($event)" />
+    <app-sidebar />
     <app-details />
   </div>
 </div>
