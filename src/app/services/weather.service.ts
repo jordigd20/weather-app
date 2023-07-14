@@ -3,7 +3,7 @@ import { Injectable, signal, effect, DestroyRef, inject } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ForecastResponse } from '../interfaces/forecast';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Observable, catchError, shareReplay, throwError, filter, tap } from 'rxjs';
+import { Observable, catchError, shareReplay, throwError } from 'rxjs';
 import { LocationResponse } from '../interfaces/location';
 
 type TemperatureUnit = 'C' | 'F';
@@ -12,6 +12,9 @@ type TemperatureUnit = 'C' | 'F';
   providedIn: 'root'
 })
 export class WeatherService {
+  private http = inject(HttpClient);
+  private destroyRef = inject(DestroyRef);
+
   private baseUrl = `https://api.weatherapi.com/v1`;
   private defaultLocation: LocationResponse = {
     id: 714482,
@@ -22,13 +25,13 @@ export class WeatherService {
     lon: -3.68,
     url: 'madrid-madrid-spain'
   };
-
-  http = inject(HttpClient);
-  destroyRef = inject(DestroyRef);
-
+  gpsLocation = localStorage.getItem('location');
+  temperatureUnitStored = localStorage.getItem('temperatureUnit') as TemperatureUnit | null;
   forecastDays = 5;
-  temperatureUnit = signal<TemperatureUnit>('C');
-  currentLocation = signal<LocationResponse>(this.defaultLocation);
+  temperatureUnit = signal<TemperatureUnit>(this.temperatureUnitStored ?? 'C');
+  currentLocation = signal<LocationResponse>(
+    JSON.parse(this.gpsLocation ?? JSON.stringify(this.defaultLocation))
+  );
   forecast = signal<ForecastResponse | undefined>(undefined);
   locationsFound = signal<LocationResponse[]>([]);
 
@@ -47,13 +50,18 @@ export class WeatherService {
         catchError(this.handleError)
       )
       .subscribe((forecast) => {
-        console.log(forecast);
         this.forecast.set(forecast);
       });
   });
 
-  searchLocation(location: string) {
-    this.http
+  constructor() {
+    if (this.gpsLocation == null) {
+      this.useNavigatorGeolocation();
+    }
+  }
+
+  getLocation$(location: string): Observable<LocationResponse[]> {
+    return this.http
       .get<LocationResponse[]>(`${this.baseUrl}/search.json`, {
         params: {
           key: environment.apiKey,
@@ -64,16 +72,40 @@ export class WeatherService {
         shareReplay({ bufferSize: 1, refCount: true }),
         takeUntilDestroyed(this.destroyRef),
         catchError(this.handleError)
-      )
-      .subscribe((res) => {
-        console.log(res);
-        this.locationsFound.set(res);
-      });
+      );
+  }
+
+  searchLocation(location: string) {
+    this.getLocation$(location).subscribe((res) => {
+      this.locationsFound.set(res);
+    });
+  }
+
+  useNavigatorGeolocation() {
+    if (this.gpsLocation == null) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          this.getLocation$(`${position.coords.latitude},${position.coords.longitude}`).subscribe(
+            (res) => {
+              this.currentLocation.set(res[0]);
+              localStorage.setItem('location', JSON.stringify(res[0]));
+            }
+          );
+        });
+      }
+    } else {
+      this.currentLocation.set(JSON.parse(this.gpsLocation));
+    }
   }
 
   setCurrentLocation(location: LocationResponse) {
     this.currentLocation.set(location);
     this.locationsFound.set([]);
+  }
+
+  setTemperatureUnit(unit: TemperatureUnit) {
+    this.temperatureUnit.set(unit);
+    localStorage.setItem('temperatureUnit', unit);
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {

@@ -3,11 +3,13 @@
     <div class="flex items-center justify-end gap-3">
       <button
         class="px-3 py-2 rounded-full text-[#110e3c] bg-[#e7e7eb] font-bold hover:bg-white transition-colors duration-75"
+        (click)="weatherService.setTemperatureUnit('C')"
       >
         ºC
       </button>
       <button
         class="px-3 py-2 rounded-full text-white bg-[#585676] font-bold hover:bg-[#404059] transition-colors duration-75"
+        (click)="weatherService.setTemperatureUnit('F')"
       >
         ºF
       </button>
