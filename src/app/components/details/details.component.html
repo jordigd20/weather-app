@@ -2,14 +2,24 @@
   <div class="max-w-screen-lg m-auto flex flex-col justify-between h-full">
     <div class="flex items-center justify-end gap-3">
       <button
-        class="px-3 py-2 rounded-full text-[#110e3c] bg-[#e7e7eb] font-bold hover:bg-white transition-colors duration-75"
+        class="px-3 py-2 rounded-full font-bold transition-colors duration-75"
         (click)="weatherService.setTemperatureUnit('C')"
+        [ngClass]="
+          weatherService.temperatureUnit() === 'C'
+            ? 'text-[#110e3c] bg-[#e7e7eb] hover:bg-white'
+            : 'text-white bg-[#585676] hover:bg-[#404059]'
+        "
       >
         ºC
       </button>
       <button
-        class="px-3 py-2 rounded-full text-white bg-[#585676] font-bold hover:bg-[#404059] transition-colors duration-75"
+        class="px-3 py-2 rounded-full font-bold transition-colors duration-75"
         (click)="weatherService.setTemperatureUnit('F')"
+        [ngClass]="
+          weatherService.temperatureUnit() === 'F'
+            ? 'text-[#110e3c] bg-[#e7e7eb] hover:bg-white'
+            : 'text-white bg-[#585676] hover:bg-[#404059]'
+        "
       >
         ºF
       </button>
